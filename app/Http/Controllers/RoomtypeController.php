@@ -40,6 +40,7 @@ class RoomtypeController extends Controller
     {
         $data= new Roomtype;
         $data->title=$request->title;
+        $data->price=$request->price;
         $data->detail=$request->detail;
         $data->save();
         return redirect("admin/roomtype/create")->with('success','Your data has been added ');
@@ -82,6 +83,7 @@ class RoomtypeController extends Controller
     public function update(Request $request, $id)
     {   $data=Roomtype::find($id);
         $data->title=$request->title;
+        $data->price=$request->price;
         $data->detail=$request->detail;
         $data->save();
         // if (!$data) {

@@ -26,7 +26,7 @@
         
         <div class="table-responsive">
             
-            <form method="post" action="{{url('admin/customer/'.$data->id)}}">
+            <form method="post" enctype="multipart/form-data"action="{{url('admin/customer/'.$data->id)}}">
                 @csrf
                 @method('put')
                 <table class="table table-bordered"> 
@@ -47,7 +47,7 @@
                     <tr>
                     <th>Photo</th>
                     <td><input name="photo" type="file">
-                                                                                    <!-- <input name="prev_photo" type="hidden" value="{{$data->photo}}">   -->
+                        <input name="prev_photo" type="hidden" value="{{$data->photo}}">  
                         <img width='100'src="{{ asset('storage/'.$data->photo)}}" >
                         <!--  -->
                     </td>
