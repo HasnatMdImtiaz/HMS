@@ -26,7 +26,8 @@
                     </tr>
                     <tr>
                     <th>Photo</th>
-                    <td> <img width='100'src="{{asset('storage/'.$data->photo)}}" ></td>
+                    <td> <img width='100'src="{{ asset('storage/' .$data->photo ) }}" ></td>
+                    <!--  -->
                     
                     </tr>
                     <tr>

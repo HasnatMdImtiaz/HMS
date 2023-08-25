@@ -53,7 +53,8 @@ class CustomerController extends Controller
         $data->password=md5($request->password);
         $data->mobile=$request->mobile;
         $data->address=$request->address;
-        $data->photo=$imgPath;
+        // $data->photo=$imgPath;
+        $data->photo=str_replace('public/',"",$imgPath);
         $data->save();
         return redirect("admin/customer/create")->with('success','Your data has been added ');
         //20:15
@@ -112,7 +113,8 @@ class CustomerController extends Controller
         $data->password=md5($request->password);
         $data->mobile=$request->mobile;
         $data->address=$request->address;
-        $data->photo=$imgPath;
+        // $data->photo=$imgPath;
+        $data->photo=str_replace('public/',"",$imgPath);
         $data->save();
         return redirect()->back()->with('success','Your data has been updated ');
         // return back()->with('success','Your data has been updated ');

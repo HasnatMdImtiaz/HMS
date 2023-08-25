@@ -17,7 +17,7 @@
             @foreach($errors->all() as $error)
             <p class="text-danger"> {{$error}}</p>
             @endforeach
-        @endifhe
+        @endif
 
         @if(Session::has('success'))
         <p class="text-success"> {{session('success')}}</p>
@@ -48,7 +48,8 @@
                     <th>Photo</th>
                     <td><input name="photo" type="file">
                                                                                     <!-- <input name="prev_photo" type="hidden" value="{{$data->photo}}">   -->
-                        <img width='100'src="{{asset('storage/'.$data->photo)}}" >
+                        <img width='100'src="{{ asset('storage/'.$data->photo)}}" >
+                        <!--  -->
                     </td>
                     </tr>
 
