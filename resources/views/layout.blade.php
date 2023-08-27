@@ -10,7 +10,13 @@
     <meta name="author" content="">
 
     <title>SB Admin 2 - Blank</title>
+    @if(!Session::has('adminData'))
+        <script>
+            window.location.href= "{{url('admin/login')}}";
+        </script>
 
+
+    @endif
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -98,6 +104,12 @@
                         <a class="collapse-item" href="{{url('admin/customer')}}">View All</a>
                     </div>
                 </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('admin/logout')}}">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span></a>
             </li>
 
 
