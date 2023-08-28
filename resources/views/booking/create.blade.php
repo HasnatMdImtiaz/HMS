@@ -22,16 +22,16 @@
         <p class="text-success"> {{session('success')}}</p>
         @endif
         <div class="table-responsive">
-            <form method="post" enctype="multipart/form-data"action="{{url('admin/customer')}}">
+            <form method="post" enctype="multipart/form-data"action="{{url('admin/booking')}}">
             
                 @csrf
                 <table class="table table-bordered"> 
                     <tr>
                         <th>Select Customer<span class="text-danger">*</span></th>
-                        <td><select class="form-control">
+                        <td><select class="form-control" name="customer_id">
                                 <option>---Select Customer---</option>
                                 @foreach($data as $customer)
-                                    <option value="{{$customer->id}}"></option>
+                                    <option value="{{$customer->id}}">{{$customer->full_name}}</option>
                                 @endforeach
 
                         </select> </td>
@@ -47,8 +47,8 @@
                     </tr>
 
                     <tr>
-                    <th>Available Rooms <span class="text-danger">*</span></th>
-                        <td><select class="form-control room">
+                    <th>Available Rooms <span class="text-danger"  name="room_id">*</span></th>
+                        <td><select class="form-control room-list">
 
                     
 
@@ -92,8 +92,15 @@
            $.ajax({
              url:"{{url('admin/booking')}}/available-rooms/"+_checkindate,
              dataType:'json',
+             beforeSend:function(){
+                $(".room-list").html('<option>---Loading---</option>');
+             }
              success:function(res){
-                console.log(res);
+                var _html='';
+                $.each(res.data,function(index,row){
+                    _html+='<option value="'+row.id+'">'+row.title+'</option>';
+                });
+                $(".room-list").html(_html);
              }
 
            });
