@@ -5,8 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RoomtypeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CustomerController;
-
-
+use App\Http\Controllers\StaffDepartment;
+use App\Http\Controllers\StaffController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +50,14 @@ Route::resource('admin/rooms',RoomController::class);
 // Customer routes
 Route::get('admin/customer/{id}/delete',[CustomerController::class,'destroy']);
 Route::resource('admin/customer',CustomerController::class);
+
+//  Department Routes
+Route::get('admin/department/{id}/delete',[StaffDepartment::class,'destroy']);
+Route::resource('admin/department',StaffDepartment::class);
+
+// Staff routes
+Route::get('admin/staff/{id}/delete',[StaffController::class,'destroy']);
+Route::resource('admin/staff',StaffController::class);
 
 // Delete images
 Route::get('admin/roomtypeimage/delete/{id}',[RoomtypeController::class,'destroy_image']);
