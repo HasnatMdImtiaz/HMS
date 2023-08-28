@@ -46,11 +46,14 @@ Route::resource('admin/roomtype',RoomtypeController::class);
 
 Route::get('admin/rooms/{id}/delete',[RoomController::class,'destroy']);
 Route::resource('admin/rooms',RoomController::class);
-// Customer routes
 
+// Customer routes
 Route::get('admin/customer/{id}/delete',[CustomerController::class,'destroy']);
 Route::resource('admin/customer',CustomerController::class);
 
+// Delete images
+Route::get('admin/roomtypeimage/delete/{id}',[RoomtypeController::class,'destroy_image']);
+// Route::resource('admin/roomtype',RoomtypeController::class);
 // Route::put('admin/roomtype/{id}', 'RoomtypeController@update')->name('roomtype.update');
 
 // Route::resource('admin/roomtype/create',RoomtypeController::class);
