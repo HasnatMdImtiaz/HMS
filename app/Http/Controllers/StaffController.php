@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Staff;
-
+use App\Models\StaffPayment;
 class StaffController extends Controller
 {
       /**
@@ -117,6 +117,37 @@ class StaffController extends Controller
     public function destroy($id)
     {   Staff::where('id',$id)->delete();
         return redirect('admin/staff')->with('success','Your data has been deleted ');
+
+        //
+    }
+
+    // All Payments
+
+    function all_payments(Request $request,$staff_id){
+        $data=StaffPayment::where('staff_id',$staff_id)->get();
+        $staff=Staff::find($staff_id);
+        return view('staffpayment.index',['staff_id'=>$staff_id,'data'=>$data,'staff'=>$staff]);
+    }
+
+    // Add payment
+
+    function add_payment($staff_id){
+        return view('staffpayment.create',['staff_id'=>$staff_id]);
+    }
+    function save_payment(Request $request,$staff_id){
+        $data=new StaffPayment;
+        $data->staff_id=$staff_id;
+        $data->amount=$request->amount;
+        $data->payment_date=$request->payment_date;
+
+        
+        $data->save();
+        return redirect('admin/staff/payment/'.$staff_id.'/add')->with('success','Your data has been added ');
+    }
+
+    public function delete_payment($id,$staff_id)
+    {   StaffPayment::where('id',$id)->delete();
+        return redirect('admin/staff/payments/'.$staff_id)->with('success','Your data has been deleted ');
 
         //
     }
