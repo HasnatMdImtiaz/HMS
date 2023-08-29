@@ -104,7 +104,7 @@ class BookingController extends Controller
     }
     // check available rooms
     function available_rooms(Request $request,$checkin_date)
-    {   $arooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN 'checkin_date' AND checkout_date )");
+    {   $arooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date )");
         return response()->json(['data'=>$arooms]);
         //
     }

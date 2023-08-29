@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\StaffDepartment;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,9 +20,7 @@ use App\Http\Controllers\BookingController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class,'home']);
 // admin login
 
 Route::get('admin/login', [AdminController::class,'login']);
@@ -29,10 +28,7 @@ Route::post('admin/login', [AdminController::class,'check_login']);
 Route::get('admin/logout', [AdminController::class,'logout']);
 // admin dashboard
 
-Route::get('admin', function () {
-    return view('dashboard');
-});
-
+Route::get('admin', [AdminController::class,'dashboard']);
 
 Route::get('layout', function () {
     return view('layout');

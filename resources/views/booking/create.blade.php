@@ -47,8 +47,8 @@
                     </tr>
 
                     <tr>
-                    <th>Available Rooms <span class="text-danger"  name="room_id">*</span></th>
-                        <td><select class="form-control room-list">
+                    <th>Available Rooms <span class="text-danger"  >*</span></th>
+                        <td><select class="form-control room-list" name="room_id">
 
                     
 
@@ -94,7 +94,7 @@
              dataType:'json',
              beforeSend:function(){
                 $(".room-list").html('<option>---Loading---</option>');
-             }
+             },
              success:function(res){
                 var _html='';
                 $.each(res.data,function(index,row){

@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Cookie;
 class AdminController extends Controller
 {   
@@ -43,7 +44,35 @@ class AdminController extends Controller
         return redirect('admin/login');
 
     }
+    function dashboard(){
+        $bookings=Booking::selectRaw('count(id) as total_bookings,checkin_date')->groupBy('checkin_date')->get();
+        
+        $labels=[];
+        $data=[];
+        foreach($bookings as $booking){
+            $labels[]=$booking['checkin_date'];
+            $data[]=$booking['total_bookings'];
+        }
+        
+        // Piechart
+        $rtbookings= DB::table('roomtypes as rt')
+        ->join('rooms as r','r.room_type_id','=','rt.id')
+        ->join('bookings as b','b.room_id','=','r.id')
+        ->select('rt.*','r.*','b.*',DB::raw('count(b.id) as total_bookings'))
+        ->groupBy('r.room_type_id')
+        ->get();
+        $plabels=[];
+        $pdata=[];
+        foreach($rtbookings as $rbooking){
+            $plabels[]=$rbooking->title;
+            $pdata[]=$rbooking->total_bookings;
+        }
 
+
+
+        return view('dashboard',['labels'=>$labels,'data'=>$data,'plabels'=>$plabels,'pdata'=>$pdata]);
+
+    }
     
     //
 }
