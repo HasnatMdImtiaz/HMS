@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>HOTEL ALCHEMY</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-light bg-dark">
 
     <div class="container">
 
@@ -35,11 +35,11 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none "></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">HOTEL ALCHEMY</h1>
                                     </div>
                                     <form class="user" method="post" action="{{url('admin/login')}}">
                                         @csrf
@@ -52,7 +52,7 @@
                                         <div class="form-group">
                                             <input name="password" type="password" class="form-control form-control-user"
                                             @if(Cookie::has('adminpwd')) value="{{Cookie::get('adminpwd')}}" @endif
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" placeholder="password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -105,3 +105,13 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
